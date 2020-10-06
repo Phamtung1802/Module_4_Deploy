@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Welcome</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#create').submit(function(event) {
+                event.preventDefault();
+                let formData=new FormData();
+                let userName = $('#userName').val();
+                let password = $('#password').val();
+                let role = $('#role').val();
+                let avatar=$('#avatar');
+                let json = {
+                    "userName" : userName,
+                    "password" : password,
+                    "role":{
+                        "id": role
+                    }
+                };
+                formData.append("appUser",new Blob([JSON.stringify(json)], {
+                    type: "application/json"
+                }));
+                formData.append("avatar",avatar[0].files[0]);
+                $.ajax({
+                    headers: {
+                    },
+                    processData: false,
+                    contentType: false,
+                    type : "POST",
+                    data: formData,
+                    url: "/create"
+                    // success: function(smartphone) {
+                    //     var respContent = "";
+                    //     respContent += "<span class='success'>Smartphone was created: [";
+                    //     respContent += smartphone.producer + " : ";
+                    //     respContent += smartphone.model + " : " ;
+                    //     respContent += smartphone.price + "]</span>"
+                    //     $("#sPhoneFromResponse").html(respContent);
+                    // }
+                });
+                event.preventDefault();
+            });
+        });
+    </script>
+</head>
+<body>
+<div style="margin: 30pt auto; width: 30%;">
+    <form id="create" method="POST" ACTION="/create" enctype="application/json">
+        <div>User Name</div>
+        <input id="userName" type="text" placeholder="User Name">
+        <br>
+        <div>Password</div>
+        <input id="password" type="password" placeholder="Password">
+        <br>
+        <select id="role">
+            <option th:each="role :${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+        </select>
+        <input id="avatar" type="file">
+        <br>
+        <input type="submit">
+    </form>
+    <table border="1">
+        <th>
+            <td>User Name</td>
+            <td>Avatar</td>
+        </th>
+        <tr th:each="user :${users}">
+            <td th:text="${user.userName}"></td>
+            <td><img th:src="@{/img/__${user.image}__}"> </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
