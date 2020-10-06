@@ -48,30 +48,7 @@
 </head>
 <body>
 <div style="margin: 30pt auto; width: 30%;">
-    <form id="create" method="POST" ACTION="/create" enctype="application/json">
-        <div>User Name</div>
-        <input id="userName" type="text" placeholder="User Name">
-        <br>
-        <div>Password</div>
-        <input id="password" type="password" placeholder="Password">
-        <br>
-        <select id="role">
-            <option th:each="role :${roles}" th:value="${role.id}" th:text="${role.name}"></option>
-        </select>
-        <input id="avatar" type="file">
-        <br>
-        <input type="submit">
-    </form>
-    <table border="1">
-        <th>
-            <td>User Name</td>
-            <td>Avatar</td>
-        </th>
-        <tr th:each="user :${users}">
-            <td th:text="${user.userName}"></td>
-            <td><img th:src="@{/img/__${user.image}__}"> </td>
-        </tr>
-    </table>
+  <H1>Hello</H1>
 </div>
 
 </body>
