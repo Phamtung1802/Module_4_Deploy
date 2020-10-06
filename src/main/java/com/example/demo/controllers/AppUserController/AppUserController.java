@@ -4,7 +4,6 @@ import com.example.demo.models.AppRole;
 import com.example.demo.models.AppUser;
 import com.example.demo.services.AppRoleService;
 import com.example.demo.services.AppUserService;
-import net.minidev.json.parser.JSONParser;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
