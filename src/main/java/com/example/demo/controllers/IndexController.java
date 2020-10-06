@@ -21,16 +21,9 @@ public class IndexController {
     private AppUserService appUserServiceImpl;
 
 
-    @GetMapping("/")
+    @GetMapping("/error")
     public ModelAndView index(){
         ModelAndView mov=new ModelAndView("index");
-        Iterable<AppRole> roles= appRoleServiceImpl.findAll();
-        Iterable<AppUser> users=appUserServiceImpl.findAll();
-        for(AppUser user: users){
-            System.out.println(user.getUserName());
-        }
-        mov.addObject("roles",roles);
-        mov.addObject("users",users);
         return mov;
     }
 }
