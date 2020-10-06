@@ -14,13 +14,6 @@ import java.awt.*;
 
 @Controller
 public class IndexController {
-    @Autowired
-    private AppRoleService appRoleServiceImpl;
-
-    @Autowired
-    private AppUserService appUserServiceImpl;
-
-
     @GetMapping("/error")
     public ModelAndView index(){
         ModelAndView mov=new ModelAndView("index");
